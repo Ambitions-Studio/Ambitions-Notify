@@ -60,7 +60,6 @@ local function Notify(notificationTitle, notificationMessage, notificationType, 
         }
     }
 
-    amb.print.info("[Ambitions-Notify] Sending notification:", notificationTitle)
     SendNUIMessage(payload)
 end
 

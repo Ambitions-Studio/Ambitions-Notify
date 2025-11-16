@@ -36,18 +36,13 @@ const showToast = (config: any) => {
     const now = Date.now()
     const elapsed = now - startTime
 
-    console.log('[DEBUG] ID:', id, 'Elapsed:', elapsed, 'Duration:', duration, 'Elapsed >= Duration:', elapsed >= duration)
-
     if (elapsed >= duration) {
-      console.log('[DEBUG] REMOVING notification ID:', id)
       removeNotification(id)
       return
     }
 
     const remaining = duration - elapsed
     const progress = (remaining / duration) * 100
-
-    console.log('[DEBUG] ID:', id, 'Remaining:', remaining, 'Progress:', progress)
 
     const notif = notifications.value.find(n => n.id === id)
     if (notif) {

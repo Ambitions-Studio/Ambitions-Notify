@@ -45,7 +45,7 @@ local function Notify(notificationTitle, notificationMessage, notificationType, 
         description = notificationMessage
     end
 
-    SendNUIMessage({
+    local payload = {
         action = "showNotification",
         data = {
             type = notificationType,
@@ -54,7 +54,10 @@ local function Notify(notificationTitle, notificationMessage, notificationType, 
             duration = notificationDuration,
             position = notificationPosition
         }
-    })
+    }
+
+    amb.print.info("[Ambitions-Notify] Sending notification:", notificationTitle)
+    SendNUIMessage(payload)
 end
 
 exports("Notify", Notify)

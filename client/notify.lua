@@ -2,13 +2,17 @@ local VALID_TYPES = {
     ["success"] = true,
     ["info"] = true,
     ["warning"] = true,
-    ["error"] = true
+    ["error"] = true,
+    ["debug"] = true
 }
 
 local VALID_POSITIONS = {
     ["top-left"] = true,
     ["top-center"] = true,
     ["top-right"] = true,
+    ["middle-left"] = true,
+    ["middle-center"] = true,
+    ["middle-right"] = true,
     ["bottom-left"] = true,
     ["bottom-center"] = true,
     ["bottom-right"] = true
@@ -26,7 +30,7 @@ local function Notify(notificationTitle, notificationMessage, notificationType, 
     end
 
     if not notificationType or not VALID_TYPES[notificationType] then
-        amb.print.error("[Ambitions-Notify] notificationType is required and must be one of: success, info, warning, error")
+        amb.print.error("[Ambitions-Notify] notificationType is required and must be one of: success, info, warning, error, debug")
         return
     end
 
@@ -36,7 +40,7 @@ local function Notify(notificationTitle, notificationMessage, notificationType, 
     end
 
     if not notificationPosition or not VALID_POSITIONS[notificationPosition] then
-        amb.print.error("[Ambitions-Notify] notificationPosition is required and must be one of: top-left, top-center, top-right, bottom-left, bottom-center, bottom-right")
+        amb.print.error("[Ambitions-Notify] notificationPosition is required and must be one of: top-left, top-center, top-right, middle-left, middle-center, middle-right, bottom-left, bottom-center, bottom-right")
         return
     end
 
@@ -68,6 +72,48 @@ RegisterCommand("testnotify", function()
         "This is a test notification from Lua!",
         "success",
         4000,
+        "top-right"
+    )
+end, false)
+
+RegisterCommand("testnotify2", function()
+    exports['Ambitions-Notify']:Notify(
+        "Success Notification",
+        "Operation completed successfully!",
+        "success",
+        5000,
+        "top-right"
+    )
+
+    exports['Ambitions-Notify']:Notify(
+        "Error Notification",
+        "Something went wrong, please try again.",
+        "error",
+        5000,
+        "top-right"
+    )
+
+    exports['Ambitions-Notify']:Notify(
+        "Warning Notification",
+        "Please be careful with this action.",
+        "warning",
+        5000,
+        "top-right"
+    )
+
+    exports['Ambitions-Notify']:Notify(
+        "Info Notification",
+        "This is an informational message for you.",
+        "info",
+        5000,
+        "top-right"
+    )
+
+    exports['Ambitions-Notify']:Notify(
+        "Debug Notification",
+        "This is a debug notification for development.",
+        "debug",
+        5000,
         "top-right"
     )
 end, false)

@@ -20,8 +20,7 @@
   },
   "dependencies": {
     "vue": "^3.5.22",
-    "vuetify": "^3.10.11",
-    "vuetify-sonner": "^0.4.0"
+    "vuetify": "^3.10.11"
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.0.4",
